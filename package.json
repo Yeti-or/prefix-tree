@@ -2,9 +2,15 @@
   "name": "prefix-tree",
   "version": "0.0.0",
   "description": "Simle prefix tree aka trie",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "npm run lint",
+    "test": "npm run specs",
+    "specs": "nyc mocha",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -20,5 +26,12 @@
   "bugs": {
     "url": "https://github.com/Yeti-or/prefix-tree/issues"
   },
-  "homepage": "https://github.com/Yeti-or/prefix-tree#readme"
+  "homepage": "https://github.com/Yeti-or/prefix-tree#readme",
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "eslint": "^4.1.1",
+    "eslint-config-pedant": "^0.9.0",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.3"
+  }
 }
