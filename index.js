@@ -8,17 +8,29 @@ Node.prototype.toString = function() {
     return this.value ? ' : ' + this.value + ' ' : '';
 };
 
-function Tree() {
+/**
+ * Creates new prefixed Tree
+ *
+ * @class
+ * @param {Array<[String, *]>} [items] - array of key-value pairs
+ */
+
+function Tree(items) {
     this._root = new Node();
+    (items || []).forEach(function(item) {
+        console.log(item);
+        this.set(item[0], item[1])
+    }, this);
 }
 
 /**
  * Find node by key
  *
+ * @private
  * @param {String} key
  * @returns {Node|null} - node
  */
-Tree.prototype.find = function(key) {
+Tree.prototype._find = function(key) {
     var node = this._root;
     var i;
 
@@ -34,21 +46,23 @@ Tree.prototype.find = function(key) {
 };
 
 /**
- * Find nodes that matches prefix
+ * Get values by prefix
  *
- * @param {String} prefix
- * @returns {Array<Node>}
+ * @param {String} [prefix]
+ * @returns {Array<*>}
  */
-Tree.prototype.match = function(prefix) {
-    var match = this.find(prefix);
+Tree.prototype.get = function(prefix) {
+    var match = this._find(prefix || '');
     if (!match) { return []; }
 
     var nodes = [match];
+    var res = [];
     var n = 0;
     var node, i, keys;
 
     while(n < nodes.length) {
         node = nodes[n];
+        node.value && res.push(node.value);
         keys = Object.keys(node.children);
         for (i = 0; i < keys.length; i++) {
             nodes.push(node.children[keys[i]]);
@@ -56,16 +70,16 @@ Tree.prototype.match = function(prefix) {
         n++;
     }
 
-    return nodes;
+    return res;
 };
 
 /**
- * Insert value to a prefix tree by key
+ * Add value to a prefix tree by key
  *
  * @param {String} key
  * @param {*} value
  */
-Tree.prototype.insert = function(key, value) {
+Tree.prototype.set = function(key, value) {
     var node = this._root;
     var i;
 
