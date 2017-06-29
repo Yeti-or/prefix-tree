@@ -1,0 +1,24 @@
+{
+  "name": "prefix-tree",
+  "version": "0.0.0",
+  "description": "Simle prefix tree aka trie",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yeti-or/prefix-tree.git"
+  },
+  "keywords": [
+    "prefix",
+    "tree",
+    "trie"
+  ],
+  "author": "Vasiliy Loginevskiy <yeti.or@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Yeti-or/prefix-tree/issues"
+  },
+  "homepage": "https://github.com/Yeti-or/prefix-tree#readme"
+}
