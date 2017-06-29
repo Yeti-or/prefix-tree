@@ -1,42 +1,11 @@
 
-/*
-   [*] - n - i - r - v - a - n - a
-    |    |
-    m    i
-    |    |
-    u    k
-    |
-    j
-    |
-    u
-
-*/
-
 function Node() {
     this.children = {};
     this.value = null;
 }
 
-/**
- * Get all descendants of node
- * 
- * @returns {Array<Node>}
- */
-Node.prototype.descendants = function() {
-    var nodes = [this];
-    var n = 0;
-    var node, i, keys;
-
-    while(n < nodes.length) {
-        node = nodes[n];
-        keys = Object.keys(node.children);
-        for (i = 0; i < keys.length; i++) {
-            nodes.push(node.children[keys[i]]);
-        }
-        n++;
-    }
-
-    return nodes;
+Node.prototype.toString = function() {
+    return this.value ? ' : ' + this.value + ' ' : '';
 };
 
 function Tree() {
@@ -72,7 +41,22 @@ Tree.prototype.find = function(key) {
  */
 Tree.prototype.match = function(prefix) {
     var match = this.find(prefix);
-    return match ? match.descendants() : [];
+    if (!match) { return []; }
+
+    var nodes = [match];
+    var n = 0;
+    var node, i, keys;
+
+    while(n < nodes.length) {
+        node = nodes[n];
+        keys = Object.keys(node.children);
+        for (i = 0; i < keys.length; i++) {
+            nodes.push(node.children[keys[i]]);
+        }
+        n++;
+    }
+
+    return nodes;
 };
 
 /**
@@ -90,15 +74,21 @@ Tree.prototype.insert = function(key, value) {
             node = node.children[key[i]];
         } else {
             node = node.children[key[i]] = new Node();
-            node._key = key.slice(0, i + 1);
         }
     }
 
     node.value = value;
 };
 
+/**
+ * For debuggability
+ */
 Tree.prototype.toString = function() {
-    return [this._root].concat(this._root.descendants());
+    if (process.env.NODE_ENV === 'development') {
+        return require('./toString')(this._root);
+    } else {
+        return this;
+    }
 };
 
 module.exports = Tree;
