@@ -8,8 +8,8 @@ Simple prefix-tree
 [![Coverage Status][coverage-img]][coveralls]
 [![Dependency Status][dependency-img]][david]
 
-[npm]:            https://www.npmjs.org/package/yeti-or/prefix-tree
-[npm-img]:        https://img.shields.io/npm/v/yeti-or/prefix-tree.svg
+[npm]:            https://www.npmjs.org/package/prefix-tree
+[npm-img]:        https://img.shields.io/npm/v/prefix-tree.svg
 
 [travis]:         https://travis-ci.org/Yeti-or/prefix-tree
 [test-img]:       https://img.shields.io/travis/Yeti-or/prefix-tree.svg?label=tests
