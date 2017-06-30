@@ -24,6 +24,7 @@ describe('get', () => {
         var tree = new Tree();
         tree.set('hello', 'world');
         expect(tree.get()).to.be.an('Array');
+        expect(tree.get()).to.be.have.lengthOf(0);
     });
 
     it('should add key/value', () => {
